@@ -32,7 +32,7 @@ import fileinput
 import collections
 import multiprocessing as mp
 try:
-    import ConfigParser as configparser
+    import configparser as configparser
 except ImportError:
     import configparser
 from gnip_trend_detection.analysis import rebin
@@ -160,7 +160,7 @@ if args.do_rebin:
         sys.exit(1)
 
     rebin_results = {}
-    for counter,data in input_data.items(): 
+    for counter,data in list(input_data.items()): 
         # set up config for this job
         this_config = copy.copy(rebin_config)
         rebin_results[counter] = pool.apply_async(rebin,(data,),this_config) 
@@ -173,7 +173,7 @@ if args.do_rebin:
                 logger.info(str(num_rebin_results) + ' rebins remaining') 
             else:
                 # print the name of any 1 remaining job
-                logger.info(str(num_rebin_results) + ' rebins remaining ({})'.format([name for name in rebin_results.keys()][0]))  
+                logger.info(str(num_rebin_results) + ' rebins remaining ({})'.format([name for name in list(rebin_results.keys())][0]))  
             time.sleep(1)
         logger.debug("{} results unfinished".format(num_rebin_results))
         for counter,result in list(rebin_results.items()):
@@ -209,7 +209,7 @@ if args.do_analysis:
         analyzer_input_data = rebin_output_data
 
     analyzer_results = {}
-    for counter, counter_data in analyzer_input_data.items():
+    for counter, counter_data in list(analyzer_input_data.items()):
         if len(counter_data) == 0:
             continue
         analyzer_results[counter] = pool.apply_async(analyzer,(counter_data,model)) 
@@ -222,7 +222,7 @@ if args.do_analysis:
                 logger.info(str(num_analyzer_results) + ' analyses remaining') 
             else:
                 # print the name of any 1 remaining job
-                logger.info(str(num_analyzer_results) + ' analysis remaining ({})'.format([name for name in analyzer_results.keys()][0]))  
+                logger.info(str(num_analyzer_results) + ' analysis remaining ({})'.format([name for name in list(analyzer_results.keys())][0]))  
             time.sleep(1)
         logger.debug("{} results unfinished".format(num_analyzer_results))
         for counter,result in list(analyzer_results.items()):

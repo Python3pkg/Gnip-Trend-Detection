@@ -17,7 +17,7 @@ data_summary = json.load(open(args.input_file))
 
 global_max_eta = 0
 global_max_eta_counter = None
-for counter,data in data_summary.items():
+for counter,data in list(data_summary.items()):
     counter = counter.encode('utf8')
     for dt,ct,eta in data:
         if eta > global_max_eta:

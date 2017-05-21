@@ -35,7 +35,7 @@ for line in line_generator:
 
 print(counters)
 results = []
-for pair in itertools.combinations(counters.keys(),2):
+for pair in itertools.combinations(list(counters.keys()),2):
     series_0 = counters[pair[0]]
     series_1 = counters[pair[1]]
     # corrcoef return the covariance matrix; get the off-diag element

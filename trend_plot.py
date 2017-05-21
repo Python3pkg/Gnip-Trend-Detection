@@ -6,7 +6,7 @@ import importlib
 import logging
 import csv
 try:
-    import ConfigParser as configparser
+    import configparser as configparser
 except ImportError:
     import configparser
 

@@ -84,7 +84,7 @@ class LinearRegressionModel(object):
             y = np.array(self.averaged_counts)  
         if self.norm_by_mean: 
             y = y/np.mean(y)
-        x = range(len(y))
+        x = list(range(len(y)))
         X = [[i] for i in x]
         slope = self.regression.fit(X,y).coef_[0]
         return slope

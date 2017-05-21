@@ -29,8 +29,8 @@ import fnmatch
 import os
 import traceback
 
-import models
-from time_bucket import TimeBucket
+from . import models
+from .time_bucket import TimeBucket
 
 # keyword arguments start/stop time are written in this format
 COMPACT_DATETIME_FORMAT = "%Y%m%d%H%M%S"
@@ -67,7 +67,7 @@ def rebin(**kwargs):
         kwargs["rule_counter"] = 1
 
     try:
-        logr.info(u"rebin.py is processing rule {}: {}".format(kwargs["rule_counter"],kwargs["rule_name"])) 
+        logr.info("rebin.py is processing rule {}: {}".format(kwargs["rule_counter"],kwargs["rule_name"])) 
 
         start_time = datetime.datetime.strptime(kwargs["start_time"],COMPACT_DATETIME_FORMAT)
         stop_time = datetime.datetime.strptime(kwargs["stop_time"],COMPACT_DATETIME_FORMAT) 

@@ -6,7 +6,7 @@ Created on Wed Jul 29 09:16:06 2015
 
 """
 
-from __future__ import division
+
 import numpy as np
 from scipy.stats import norm, mstats
 

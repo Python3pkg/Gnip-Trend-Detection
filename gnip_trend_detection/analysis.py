@@ -177,7 +177,7 @@ def analyze(generator, model):
         try:
             time_interval_start = dt_parser(line[0]) 
         except ValueError:
-            print(line[0])
+            print((line[0]))
             sys.exit()
         time_interval_duration = line[1]
         count = float(line[2])
@@ -336,7 +336,7 @@ def plot(input_generator,config):
         props = dict(boxstyle='round',facecolor='white', alpha=0.5)
         model_name = config['analyze']['model_name']
         model_pars = ""
-        for k,v in config[model_name + '_model'].items():
+        for k,v in list(config[model_name + '_model'].items()):
             model_pars += "{}: {}\n".format(k,v) 
         text_str = "model: {}\n{}".format(model_name,str(model_pars))
         ax1.text(0.05,0.95,
@@ -347,7 +347,7 @@ def plot(input_generator,config):
                 transform=ax1.transAxes
                 )
     
-    plt.suptitle(u"{}".format( plot_config.get("plot_title","SET A PLOT TITLE")))
+    plt.suptitle("{}".format( plot_config.get("plot_title","SET A PLOT TITLE")))
     
     # write the image 
     try:
@@ -355,7 +355,7 @@ def plot(input_generator,config):
     except OSError:
         pass
 
-    plot_file_name = u"{}/{}.{}".format(
+    plot_file_name = "{}/{}.{}".format(
             plot_config.get("plot_dir",".").rstrip('/'), 
             plot_config.get("plot_file_name","plot"),
             plot_config.get("plot_file_extension","png")
